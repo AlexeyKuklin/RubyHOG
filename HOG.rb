@@ -16,9 +16,9 @@ class HOG
 
   def getBin(angle)
     angle += Math::PI if angle < 0
-   
+
     kBins = 9
-   
+
     return (angle * kBins / Math::PI).floor
   end
 
@@ -40,7 +40,7 @@ class HOG
 
         mag = Math.sqrt(gradX*gradX + gradY*gradY)
         angle = Math.atan2(gradY, gradX)
-        vec.push([mag, angle])
+        vec.push([mag, getBin(angle)])
 
         c += 1
       end
@@ -49,19 +49,19 @@ class HOG
     return vec
 
   end
-  
-  
-def getHistogram(histogram, vectors, x, y)
+
+
+  def getHistogram(histogram, vectors, x, y)
     kCellSize = 8
-               
+
     for i in 0..kCellSize-1
       for j in 0..kCellSize-1
         val = vectors[y*kCellSize + i + x + j][0]
       end
     end
-               
+
     #GradVec* v = &vectors[y*kCellSize + i + x + j];
-end
+  end
 
 end
 
